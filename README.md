@@ -1,4 +1,4 @@
-# Case Detection System Documentation
+# Case Detection System 
 
 ### Prerequisites
 * Java Developer Kit – version 11+
@@ -19,40 +19,19 @@ The project can be compiled using the Maven build tool.  To compile:
 cd <project directory>/cds 
 mvn package
 ```
-
 ### Data and models
-The experiment data and models from our research are available at https://www.rods.pitt.edu/research/pds/.  You will 
+Experimental data and models from our research are available at https://www.rods.pitt.edu/research/pds/.  You will 
 need to request and then sign a data use agreement to access the data.  After obtaining the data and models, copy the
 files to /data and /models directories in the project directory.
+
+### Citing
+If you use this software in your research, please cite the following paper:
+
 
 ### Description of packages and classes
 
 #### edu.pitt.rods.cds.a_run1023 - Main package for running the case detection system
-A0_00compareTwoLists.java
-* un-useful code for some data checking, could be removed 
 
-A0_0getDiseaseLabel.java
-* function:
-  * process cleaning on the input files
-    *add “M” for empty cell
-    *replace | with ,
-    *remove commas within double quotes
-  * add diagnose labels to the input files to generate output files
-  * note: the current code only process data for year 2020, if you want to process for all years, line 24 should change to the following:
-    *for (int year = 2011; year<=2021; year++){
-* input files:
-  * PDS_ICD_lab_additionallab_combine_labels_10162023_updateCOV.csv
-  * Data shared by Jessi, discrete_filtered_encounters_cuis_vitals_diagnosis_labs_2023-07-12/discrete_filtered_"+year+"_encounters_cuis_vitals_diagnosis_labs_2023-07-12.txt
-* output files:
-  * data07122023_discrete_add_label_" + year + ".csv"
-
-A0_1getData_COV.java
-* function:
-  * for COV in season (2020-2021), prepare a training dataset:
-    *encounters with COV: any encounters with disease LABEL =T in the season
-    *encounters with OTHER : any encounters with N_DT_ADMISSION_DATE within [2020-08-01, 2021-08-31] ; excluding encounters that have any disease label and lab test results
-* input files: data07122023_discrete_add_label_COV.csv
-* output files: data07122023_ COV_2020-2021.csv
 
 A0_1getData_EachDisease.java
 * function:
@@ -85,70 +64,85 @@ A1_0getCleanFile.java
   *
 * input files: properties10172023.txt, data07122023_" + disease + "_" + season + ".csv"
 * output files: training_" + season + "_" + disease + "_cleaned.csv
-  A1_0getCleanFileAllEncounters.java
+
+A1_0getCleanFileAllEncounters.java
 * function: same as A1_0getCleanFile.java file, do that for all encounters
 * input files: data07122023_" + disease + "_" + season + ".csv"
 * output files: training_" + season + "_all_cleaned.csv";
-  A1_1getArffHeader.java
+
+A1_1getArffHeader.java
 * function: get the header (for arff file generations) by considering multiple year situation
   * For all UMLS codes, potential values are {P,N,M};
   * For all lab codes, potential values are {H,L,N,M}
 * input files: training_" + season + "_" + disease + "_cleaned.csv"
 * output files: header_updated_consolidated.txt
-  A1_2getArffAll.java
+
+A1_2getArffAll.java
 * function: add arff header to csv file (all encoutners) to generate arff files
 * input files: header_updated_consolidated_all.txt; training_" + oneSeason +  "_All_cleaned.csv";
 * output files: training_" + oneSeason +  "_All_cleaned.arff"
-  A1_2getArffMultiYear.java
+  
+A1_2getArffMultiYear.java
 * function: add arff header to csv file (disease training datasets) to generate arff files
   * To develop a predictive model for disease Di in season Sj, we compiled a training dataset from the four seasons preceding Sj (specifically, seasons Sj-4, Sj-3, Sj-2, and Sj-1). This dataset included all patient encounters labeled with disease Di. As negative cases, we selected patient encounters from August of season Sj-1 that did not exhibit any ICD codes or positive laboratory results for our seven key monitored diseases: influenza, RSV, hMPV, adenovirus, enterovirus, parainfluenza, and COVID-19. August was chosen based on expert consensus as a month typically exhibiting low prevalence for these diseases. An encounter in this period would have a low possibility of having any of these diseases if it did not exhibit any ICD codes or positive laboratory results.
 * input files: header_updated_consolidated_all.txt; training_" + oneSeason +  "_All_cleaned.csv";
 * output files: training_"+ oneRange + "_" +  diseaseName + "_cleaned.arff"
-  A2_processTestData.java
+
+A2_processTestData.java
 * ignore this file. The files with “All” are test files.
-  B1_univariate_rank_feature.java
+
+B1_univariate_rank_feature.java
 * Run following command to get information gain, for examples:
 * java -Xmx8g -cp E:\Dropbox\YeEclipse\lib\weka.jar weka.attributeSelection.InfoGainAttributeEval -s "weka.attributeSelection.Ranker -T -1.7976931348623157E308 -N -1" -i E:\Greg_PDS_research_exp2023\intermediate_data\training_2012to2013_RSV_cleaned.arff -x 10  > E:\Greg_PDS_research_exp2023\results\2012to2013\featureRanking.txt
 * input files: for example, training_2012to2013_RSV_cleaned.arff
 * output files: for example, featureRanking.txt
-  B2_SortDataByInforGain_simple.java
+
+B2_SortDataByInforGain_simple.java
 * Process information gain result files (add feature names)
 * input files: pds_dataset_umls_cui.txt, pds_dataset_loinc.txt
 * output files:  total_informationGainScore_CVMerit_simple.csv , total_informationGainScore_CVMerit_simple_description.csv
-  B3_getFeatureUnionAll.java
+
+B3_getFeatureUnionAll.java
 * Get the union of features (for all diseases) based on threshold (0.001)
 * input files: total_informationGainScore_CVMerit_simple.csv in different disease folders
 * output files:  union_feature_" + threshold + "_" + year + "_all_V2.csv”
-  B4_filterArffBasedonIG_unionAll.java
+
+B4_filterArffBasedonIG_unionAll.java
 * Filter arff  files based on information gain features
 * input files: training_" + year + "_" + disease + "_cleaned.arff"
   training_" + nextYear + "_" + disease + "_cleaned.arff
 * output files:
   * train.arff, test.arff for multiple diseases and multiple years  
-    B5_getNBmodel_testPerformance.java
+
+B5_getNBmodel_testPerformance.java
 * Learn NB models, save models, test performance
 * input files: train.arff, test.arff
 * output files:  NB_new.xml, result.csv, multiple files saved in multiple folders for each disease each season
-  B5_getSummary_from_resultFiles.java
+
+B5_getSummary_from_resultFiles.java
 * Get result summary from the test performance
 * Input files: result.csv
 * Output files: auc_summary_union_feature_all_" + threshold + ".csv"
-  C1_getFilteredData_for_LRcalcualtion.java
+
+C1_getFilteredData_for_LRcalcualtion.java
 * clean the data to produce likelihoods
 * input: union_feature_" + threshold+"_" + thisYearString +"_all.csv”; training_" + nextYearString + "_All_cleaned.arff";
 * output files: training_" + thisYearString + "_test_" + nextYearString + "_All_cleaned_union_" + threshold + ".arff”
-  C2_1getLR.java
+
+C2_1getLR.java
 * generate likelihoods for all encounters
 * input files: training_" + thisYearString + "_test_" + nextYearString + "_All_cleaned_union_" + threshold + ".arff”
 * output files: generatedLR_allVisits.csv, generatedProb_allVisits.csv multiple files for different disease and multiple seasons
-  C2_2getIDList.java
+
+C2_2getIDList.java
 * just data quality check to whether ID is distinct or not. Could be removed
-  C2_linkLR.java
+
+C2_linkLR.java
 * link likelihood files with the labels and dates to provide files for John
 * input files: IDList_" + testYear + ".csv", generatedLR_allVisits.csv for multiple diseases
 * output files: LR_test_" + testYear + "_" + threshold + ".csv"
 
-* C3_retrieveProb.java
+C3_retrieveProb.java
 * Could be removed
 
 #### edu.pitt.rods.cds.utility - Utility classes
@@ -157,16 +151,19 @@ Check.java
 
 Configuration.java 
 
-* FeatureWithIG_CVMerit.java
+FeatureWithIG_CVMerit.java
 * Called by B2_SortDataByInforGain_simple
 
-* FeatureWithIG_MultiDiseases.java
+FeatureWithIG_MultiDiseases.java
 * Could be removed
-  Print.java
+
+Print.java
 * Could be removed
-  combine_data.java
+
+combine_data.java
 * Could be removed
-  test.java
+
+test.java
 * Could be removed
 
 ### Data File Descriptions
@@ -184,9 +181,7 @@ This is a file of likelihood ratios for each feature for each disease.  The file
 * <DISEASE>_Prob_T - Probability of the disease true given the Label value
 
 
-ICD_X: Label generated solely from ICD codes.
-LAB_X: Label generated solely from laboratory data (excluding Theradoc data).
-LABEL_X: Comprehensive label derived from both ICD_X and LAB_X.
-LAB_X_ADDITIONAL: counts from theradoc data
-LABEL_X_NEW: An advanced label combining LABEL_X and LAB_X_ADDITIONAL
+* LABEL_X: Comprehensive label derived from both ICD_X and LAB_X.
+* LAB_X_ADDITIONAL: counts from theradoc data
+* LABEL_X_NEW: An advanced label combining LABEL_X and LAB_X_ADDITIONAL
 
