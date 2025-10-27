@@ -28,7 +28,7 @@ import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Instances;
 import weka.core.Utils;
 
-public class B5_getNBmodel_testPerformance {
+public class GetNBmodel_testPerformance {
 	static String disease;
 	static String folderLoc;
 	static String season;
@@ -56,14 +56,14 @@ public class B5_getNBmodel_testPerformance {
 			for (String d:diseaseList) {
 				disease = d;
 				ArrayList<String> thisYearList = new ArrayList<String>();
-//				thisYearList.add("2012-2016"); thisYearList.add("2013-2017"); thisYearList.add("2014-2018");  
-//				thisYearList.add("2015-2019"); 
+				thisYearList.add("2012-2016"); thisYearList.add("2013-2017"); thisYearList.add("2014-2018");  
+				thisYearList.add("2015-2019"); 
 				thisYearList.add("2016-2020"); 
 
 				
 				ArrayList<String> nextYearList = new ArrayList<String>();
-//				nextYearList.add("2016-2017"); 	nextYearList.add("2017-2018"); nextYearList.add("2018-2019"); 
-//				nextYearList.add("2019-2020"); 
+				nextYearList.add("2016-2017"); 	nextYearList.add("2017-2018"); nextYearList.add("2018-2019"); 
+				nextYearList.add("2019-2020"); 
 				nextYearList.add("2020-2021"); 
 				
 			
@@ -75,42 +75,42 @@ public class B5_getNBmodel_testPerformance {
 			}
 		}
 		
-//		diseaseList = new ArrayList<String>();
-//		diseaseList.add("OTHER"); 		
-//		for (Double t:thresholdList) {
-//			threshold = t;
-//			for (String d:diseaseList) {
-//				disease = d;
-//				ArrayList<String> thisYearList = new ArrayList<String>();
-//				thisYearList.add("2015-2016"); thisYearList.add("2016-2017"); thisYearList.add("2017-2018");  
-//				thisYearList.add("2018-2019"); thisYearList.add("2019-2020"); 			
-//				ArrayList<String> nextYearList = new ArrayList<String>();
-//				nextYearList.add("2016-2017"); 	nextYearList.add("2017-2018"); nextYearList.add("2018-2019"); 
-//				nextYearList.add("2019-2020"); nextYearList.add("2020-2021"); 	
-//				for (int i=0; i<thisYearList.size(); i++) {
-//					year = thisYearList.get(i);
-//					nextYear = nextYearList.get(i);
-//					runOneYearTestDifferentYear();
-//				}	
-//			}
-//		}
-//		diseaseList = new ArrayList<String>();
-//		diseaseList.add("COV"); 	
-//		for (Double t:thresholdList) {
-//			threshold = t;
-//			for (String d:diseaseList) {
-//				disease = d;
-//				ArrayList<String> thisYearList = new ArrayList<String>();
-//				thisYearList.add("2019-2020"); 			
-//				ArrayList<String> nextYearList = new ArrayList<String>();
-//				nextYearList.add("2020-2021"); 	
-//				for (int i=0; i<thisYearList.size(); i++) {
-//					year = thisYearList.get(i);
-//					nextYear = nextYearList.get(i);
-//					runOneYearTestDifferentYear();
-//				}	
-//			}
-//		}
+		diseaseList = new ArrayList<String>();
+		diseaseList.add("OTHER"); 		
+		for (Double t:thresholdList) {
+			threshold = t;
+			for (String d:diseaseList) {
+				disease = d;
+				ArrayList<String> thisYearList = new ArrayList<String>();
+				thisYearList.add("2015-2016"); thisYearList.add("2016-2017"); thisYearList.add("2017-2018");  
+				thisYearList.add("2018-2019"); thisYearList.add("2019-2020"); 			
+				ArrayList<String> nextYearList = new ArrayList<String>();
+				nextYearList.add("2016-2017"); 	nextYearList.add("2017-2018"); nextYearList.add("2018-2019"); 
+				nextYearList.add("2019-2020"); nextYearList.add("2020-2021"); 	
+				for (int i=0; i<thisYearList.size(); i++) {
+					year = thisYearList.get(i);
+					nextYear = nextYearList.get(i);
+					runOneYearTestDifferentYear();
+				}	
+			}
+		}
+		diseaseList = new ArrayList<String>();
+		diseaseList.add("COV"); 	
+		for (Double t:thresholdList) {
+			threshold = t;
+			for (String d:diseaseList) {
+				disease = d;
+				ArrayList<String> thisYearList = new ArrayList<String>();
+				thisYearList.add("2019-2020"); 			
+				ArrayList<String> nextYearList = new ArrayList<String>();
+				nextYearList.add("2020-2021"); 	
+				for (int i=0; i<thisYearList.size(); i++) {
+					year = thisYearList.get(i);
+					nextYear = nextYearList.get(i);
+					runOneYearTestDifferentYear();
+				}	
+			}
+		}
 		
 		
 	}
