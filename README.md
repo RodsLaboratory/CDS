@@ -20,8 +20,8 @@ cd <project directory>/cds
 mvn package
 ```
 ### Data and models
-Experimental data and models from our research are available at https://www.rods.pitt.edu/research/pds/.  You will 
-need to request and then sign a data use agreement to access the data.  After obtaining the data and models, copy the
+Experimental models from our research are available at https://github.com/RodsLaboratory/CDS/tree/branch-10272025/models.  You will 
+need to request research data and then sign a data use agreement to access the data.  After obtaining the data and models, copy the
 files to /data and /models directories in the project directory.
 
 ### Citing
