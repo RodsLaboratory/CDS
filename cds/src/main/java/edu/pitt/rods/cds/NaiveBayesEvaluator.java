@@ -103,7 +103,8 @@ public class NaiveBayesEvaluator {
         System.out.println("Loaded test data from: " + cleanedTestFile);
 
         String attributeIndices = "";
-        try (InputStream is = NaiveBayesEvaluator.class.getResourceAsStream("/attributes_to_remove.txt")) {
+        String attributesToRemoveFile = "/attributes_to_remove-" + modelYear  + ".txt";
+        try (InputStream is = NaiveBayesEvaluator.class.getResourceAsStream(attributesToRemoveFile)) {
             assert is != null;
             try (Scanner scanner = new Scanner(is, StandardCharsets.UTF_8)) {
                 attributeIndices = scanner.useDelimiter("\\A").next();
@@ -114,7 +115,7 @@ public class NaiveBayesEvaluator {
         }
 
         testData = removeAttributes(testData, attributeIndices);
-        System.out.println("Filtered out attributes using attributes_to_remove.txt") ;
+        System.out.println("Filtered out attributes using " + attributesToRemoveFile) ;
 
 
 
@@ -195,6 +196,7 @@ public class NaiveBayesEvaluator {
         objIn.close();
         return classifier;
     }
+
 
     private static Instances loadTestData(String testFile) throws Exception {
         DataSource source = new DataSource(testFile);

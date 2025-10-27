@@ -35,7 +35,7 @@ import weka.estimators.Estimator;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 
-public class C2_1getLR {
+public class GetLR_Prob {
 	static PrintWriter printoutProb;
 	static PrintWriter printoutLR;
 	static String folderLoc;	

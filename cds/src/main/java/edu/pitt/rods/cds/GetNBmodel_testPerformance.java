@@ -21,7 +21,7 @@ import java.io.*;
 import java.util.*;
 
 import edu.pitt.rods.cds.utility.Configuration;
-import edu.pitt.rods.cds.utility.Print;
+//import edu.pitt.rods.cds.utility.Print;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
@@ -163,7 +163,7 @@ public class GetNBmodel_testPerformance {
 		cls.buildClassifier(train);
 		NaiveBayes model = (NaiveBayes) cls;	
 		String network = model.toString();		
-		Print.print2File(network, nameOfNetwork);
+//		Print.print2File(network, nameOfNetwork);
 			
 		FileOutputStream fileOut = new FileOutputStream(nameOfNetwork.replace(".xml", ".model"));
         ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
