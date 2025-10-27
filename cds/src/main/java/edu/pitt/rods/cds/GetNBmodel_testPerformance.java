@@ -15,7 +15,7 @@
 //
 
 
-package edu.pitt.rods.cds.a_run1023;
+package edu.pitt.rods.cds;
 
 import java.io.*;
 import java.util.*;
@@ -116,7 +116,7 @@ public class GetNBmodel_testPerformance {
 	}
 	
 	public static void runOneYearTestDifferentYear() throws Exception {
-		String property_file_name = "properties10172023.txt";		
+		String property_file_name = "properties.txt";		
 		folderLoc=Configuration.getExperimentFolderLocation(property_file_name);			
 		
 	    String resultLocation=folderLoc +"javaRunning_" + disease + "_" + year + "_" + nextYear + "/union_feature_"+threshold+"_NB/";
