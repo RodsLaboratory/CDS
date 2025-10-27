@@ -49,7 +49,7 @@ public class C2_1getLR {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		// The  test data  must have the same  order as the train arff.
-		String property_file_name = "properties10172023.txt";		
+		String property_file_name = "properties.txt";		
 		folderLoc=Configuration.getExperimentFolderLocation(property_file_name);	
 		ArrayList<Double> thresholdList = new ArrayList<Double>();
 		thresholdList.add(0.001);
