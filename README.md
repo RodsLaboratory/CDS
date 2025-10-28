@@ -52,22 +52,3 @@ GetLR_Prob.java
 Configuration.java 
 
 
-### Data File Descriptions
-LR_test_20XX-20XX_0.001_V2.csv - Likelihood data file.  
-This is a file of likelihood ratios for each feature for each disease.  The file is in CSV format with the following columns:
-* ID - Record ID
-* SEASON - Season of the data
-* ICD_<DISEASE> - ICD Status of the disease [M - missing, T - true, F - false]
-* LAB_<DISEASE> - Lab Status of the disease [M,T,F]
-* LABEL_<DISEASE> - ICD/Lab Status of the disease [M,T,F] - using rule ***
-* Admit_date_time - Time of ED visit in YYYY-MM-DD HH24:MM:SS
-* <DISEASE>_loglikelihood_M - Log likelihood of the disease missing given the Label value
-* <DISEASE>_loglikelihood_T - Log likelihood of the diseasetrue  given the Label value
-* <DISEASE>_Prob_M - Probability of the disease missing given the Label value
-* <DISEASE>_Prob_T - Probability of the disease true given the Label value
-
-
-* LABEL_X: Comprehensive label derived from both ICD_X and LAB_X.
-* LAB_X_ADDITIONAL: counts from theradoc data
-* LABEL_X_NEW: An advanced label combining LABEL_X and LAB_X_ADDITIONAL
-
