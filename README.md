@@ -54,9 +54,6 @@ GetLR_Prob.java
 * input files: training_" + thisYearString + "_test_" + nextYearString + "_All_cleaned_union_" + threshold + ".arff”
 * output files: generatedLR_allVisits.csv, generatedProb_allVisits.csv multiple files for different disease and multiple seasons
 
-
-#### edu.pitt.rods.cds.utility - Utility classes
-
 Configuration.java 
 
 
