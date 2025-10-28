@@ -21,7 +21,16 @@ mvn package
 ```
 ### Models
 The pre-trained models used in the case detection system can be found in the models subdirectory.  These models are in 
-three formats: Weka .model files, comma-delimited files (.csv) and text files (.txt).  
+three formats: Weka .model files, comma-delimited files (.csv) and text files (.txt). The conventions we used in the
+abbreviations are the following:
+* M - missing or not present
+* T - true or present
+* P - positive
+* N - negative
+* H - high
+* N - normal 
+* L - low
+
 
 ### Citing
 If you use this software in your research, please cite the following paper:
