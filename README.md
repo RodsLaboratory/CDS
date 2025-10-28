@@ -19,10 +19,9 @@ The project can be compiled using the Maven build tool.  To compile:
 cd <project directory>/cds 
 mvn package
 ```
-### Data and models
-Experimental models from our research are available at https://github.com/RodsLaboratory/CDS/tree/main/models.  You will 
-need to request research data and then sign a data use agreement to access the data.  After obtaining the data and models, copy the
-files to /data and /models directories in the project directory.
+### Models
+The pre-trained models used in the case detection system can be found in the models subdirectory.  These models are in 
+three formats: Weka .model files, comma-delimited files (.csv) and text files (.txt).  
 
 ### Citing
 If you use this software in your research, please cite the following paper:
