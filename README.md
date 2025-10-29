@@ -57,7 +57,10 @@ Configuration
 
 NaiveBayesEvaluator
 * load .model files by year
-* evaluate case data produced by Metamap and generate prediction results 
+* evaluate case data produced by Metamap and generate prediction results
+* input files:  .model files, .arff files
+* output files:  prediction results in .csv format
+* 
 
 
 
