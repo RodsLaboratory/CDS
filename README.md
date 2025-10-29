@@ -39,21 +39,25 @@ If you use this software in your research, please cite the following paper:
 ### Description of packages and classes
 
 #### edu.pitt.rods.cds - Main package for running the case detection system
-
-
  
 
-GetNBmodel_testPerformance.java
+GetNBmodel_testPerformance
 * Learn NB models, save models, test performance
 * input files: train.arff, test.arff
 * output files:  NB_new.xml, result.csv, multiple files saved in multiple folders for each disease each season
 
 
-GetLR_Prob.java
+GetLR_Prob
 * generate likelihoods and probabilities for all encounters
 * input files: training_" + thisYearString + "_test_" + nextYearString + "_All_cleaned_union_" + threshold + ".arff”
 * output files: generatedLR_allVisits.csv, generatedProb_allVisits.csv multiple files for different disease and multiple seasons
 
-Configuration.java 
+Configuration
+* load configuration parameters from properties.txt file
+
+NaiveBayesEvaluator
+* load .model files by year
+* evaluate case data produced by Metamap and generate prediction results 
+
 
 
