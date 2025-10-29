@@ -4,8 +4,8 @@ In this project we trained 36 different models covering multiple years from 2012
 include influenza, respiratory syncytial virus, adenovirus, parainfluenza, human metapneumovirus, enterovirus and
 Covid-19. These are Naive Bayes models built using the Weka Java API. The input for these models are up to 696 discrete
 valued variables derived from medical records and the output
-of each model is a single binary variable i.e., the presence or absence of disease. In order to utilize these models,
-one can use the Weka desktop software or Java. A Java program demonstrating usage is in the CDS Github project.
+of each model is a single binary variable i.e., the presence or absence of disease. In order to utilize the .model files directly,
+one can use the Weka desktop software or Weka Java API. 
 
 The pre-trained models are in one of
 three formats: Weka .model files, comma-delimited files (.csv) and text files (.txt). The conventions we used in the
