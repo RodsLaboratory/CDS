@@ -23,7 +23,7 @@ mvn package
 The pre-trained models used in the case detection system can be found in the models subdirectory.  These models are in 
 three formats: Weka .model files, comma-delimited files (.csv) and text files (.txt). The conventions we used in the
 abbreviations are the following:
-* M - missing or not present
+* M - missing or not present (for the target class, M stands for Missing and means that the ICD code for the disease was not found and the PCR lab result if available was negative)
 * T - true or present
 * P - positive
 * N - negative
